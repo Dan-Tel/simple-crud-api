@@ -4,13 +4,13 @@ export const isUserValid = (user: unknown): user is User => {
   const { username, age, hobbies } = user as Record<string, unknown>;
 
   if (
-    !username ||
-    !age ||
-    !hobbies ||
+    username === undefined ||
+    age === undefined ||
+    hobbies === undefined ||
     typeof user !== "object" ||
     typeof username !== "string" ||
     typeof age !== "number" ||
-    Array.isArray(hobbies) ||
+    !Array.isArray(hobbies) ||
     Object.keys(user || {}).length !== 3
   ) {
     return false;

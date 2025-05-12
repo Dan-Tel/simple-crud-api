@@ -10,10 +10,7 @@ export const getRequestBody = async <T>(req: IncomingMessage): Promise<T> => {
 
     req.on("end", () => {
       try {
-        console.log(typeof body);
-        body = body ? JSON.parse(JSON.stringify(body)) : {};
-
-        resolve(JSON.parse(body));
+        resolve(JSON.parse(body) || {});
       } catch (e) {
         reject(e);
       }
